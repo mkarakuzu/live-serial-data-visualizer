@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # live-serial-data-visualizer
 A simple and efficient Python tool for real-time visualization of serial data streams from any device (e.g., Arduino, sensors, or lab instruments).
 =======
@@ -84,4 +83,3 @@ pip install pyserial matplotlib
   * **macOS / Linux:** `/dev/tty.usbmodem101`, `/dev/ttyACM0`, etc.
 * The incoming data should be numeric (e.g., `"23.7"`).
 * Any errors encountered during execution will be shown in the terminal, and resources will be closed safely afterward.
->>>>>>> 013ea1c (Initial commit)
