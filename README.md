@@ -1,6 +1,3 @@
-# live-serial-data-visualizer
-A simple and efficient Python tool for real-time visualization of serial data streams from any device (e.g., Arduino, sensors, or lab instruments).
-=======
 # Live Serial Data Visualizer
 
 This project is a Python application designed to **visualize real-time data received through a serial port**. It can display numerical data dynamically on a live graph, whether the source is a sensor, a microcontroller (e.g., Arduino, ESP32), or any other serial communication device.
