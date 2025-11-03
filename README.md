@@ -8,6 +8,12 @@ This project is a Python application designed to **visualize real-time data rece
 
 ---
 
+## 🖼️ Demo
+
+![Demo](demo.gif)
+
+---
+
 ## 🔍 Features
 
 * **Real-time data tracking:** Incoming serial data is plotted instantly.
