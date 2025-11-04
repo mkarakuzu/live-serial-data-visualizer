@@ -14,6 +14,8 @@ try:
     y = list() #y-axis list definition
     x_count = 1 #data count
     plt.ion() #interactive plotting
+    
+
 
     while True:
         if ser.in_waiting > 0: #if anything is waiting in port
@@ -27,6 +29,9 @@ try:
 
                 plt.clf() #clear graph
                 plt.plot(x,y, color = 'blue') #plot
+                plt.title("Live Serial Data Visualization")
+                plt.xlabel("Data Number")
+                plt.ylabel("Data Value")
                 plt.pause(update_interval) #update
 
                 print(f"Data: {data}") #print data to terminal
