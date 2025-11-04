@@ -1,6 +1,7 @@
 # Live Serial Data Visualizer
 
-This project is a Python application designed to **visualize real-time data received through a serial port**. It can display numerical data dynamically on a live graph, whether the source is a sensor, a microcontroller (e.g., Arduino, ESP32), or any other serial communication device.
+This project is a **Python desktop application with a simple graphical interface (Tkinter)** that allows users to visualize **real-time serial data** on a live-updating graph.
+It is designed for use with sensors, microcontrollers (e.g., Arduino, ESP32), or any other device that communicates via a serial port.
 
 ---
 
@@ -12,16 +13,17 @@ This project is a Python application designed to **visualize real-time data rece
 
 ## 🔍 Features
 
-* **Real-time data tracking:** Incoming serial data is plotted instantly.
-* **Interactive live graph:** Uses `matplotlib` to continuously update the plot as new data arrives.
-* **Customizable setup:** Easily modify the port name, baud rate, and graph update interval.
-* **Device-agnostic:** Works with any system that outputs serial data — Arduino boards, sensor modules, lab devices, and more.
+* **Real-time data plotting:** Continuously visualizes incoming serial data on a live graph.
+* **Interactive interface:** Built with `Tkinter` for selecting port and baud rate easily.
+* **Start / Stop control:** Begin or pause data streaming at any time.
+* **Live numeric display:** Shows the latest received data value below the graph.
+* **Cross-device compatible:** Works with any serial-output system — Arduino boards, sensor modules, lab instruments, etc.
 
 ---
 
 ## ⚙️ Requirements
 
-Install the following Python libraries before running the program:
+Install the following dependencies before running:
 
 ```bash
 pip install pyserial matplotlib
@@ -31,52 +33,54 @@ pip install pyserial matplotlib
 
 ## 🧩 Usage
 
-1. Connect your serial data source to the computer.
-   *(For example, an Arduino board, a sensor module, or another serial device.)*
+1. Connect your serial data source to your computer.
+   *(For example: an Arduino board sending numeric data via `Serial.println()`.)*
 
-2. Configure the serial settings in the code according to your device:
-
-   ```python
-    port = '/dev/tty.usbmodem101' #serial communication device name
-    baud_rate = 9600 #serial communication baud rate
-    update_interval = 0.01 #graph update interval (second)
-   ```
-
-3. Run the script:
+2. Run the program:
 
    ```bash
    python live_plot.py
    ```
 
-4. The application will display incoming data both in the terminal and on a live graph.
+3. In the window:
 
-5. When the data stream ends or the window is closed, the serial connection and graph are automatically closed safely.
+   * Select the **serial port** (e.g., `COM3` or `/dev/tty.usbmodem101`)
+   * Choose a **baud rate** (e.g., `9600`)
+   * Click **Start** to begin reading and visualizing data
+   * Click **Stop** to safely close the connection
+
+4. The latest received value will appear above the graph in real-time.
 
 ---
 
 ## 🖼️ How It Works
 
-1. The program listens for incoming serial data on the specified port.
-2. Each new line of data is decoded, stripped, and converted to a numerical (`float`) value.
-3. The values are stored in lists and plotted in real time using `matplotlib`.
-4. The graph is continuously refreshed, creating a smooth live visualization.
+1. The GUI (Tkinter) lists available serial ports and baud rates.
+2. When “Start” is pressed, a background thread continuously reads data from the selected port.
+3. Each new numeric value is plotted live using `matplotlib` embedded within the interface.
+4. The user can stop data collection at any time — the port closes automatically.
 
 ---
 
 ## 🧠 Use Cases
 
-* Real-time visualization of temperature, humidity, or acceleration data from an Arduino or ESP32
-* Monitoring live sensor output from lab or industrial equipment
-* Observing experimental data streams for analysis
-* Visual debugging of prototype systems
+* Monitoring real-time sensor outputs (temperature, humidity, pressure, etc.)
+* Testing Arduino or ESP32 serial outputs visually
+* Debugging live data streams from experimental or industrial setups
+* Educational demonstrations of data acquisition systems
 
 ---
 
 ## 🧰 Notes
 
-* Port names differ depending on the operating system:
+* Port names differ by operating system:
 
   * **Windows:** `COM3`, `COM4`, etc.
   * **macOS / Linux:** `/dev/tty.usbmodem101`, `/dev/ttyACM0`, etc.
-* The incoming data should be numeric (e.g., `"23.7"`).
-* Any errors encountered during execution will be shown in the terminal, and resources will be closed safely afterward.
+* Incoming data must be **numeric** (e.g., `"23.7"`).
+* The application automatically handles serial closure when stopped or exited.
+* Errors (like invalid ports or decoding issues) are displayed on-screen instead of the console.
+
+---
+
+💡 *Built with Python, Tkinter, Matplotlib, and PySerial.*
