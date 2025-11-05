@@ -21,19 +21,19 @@ class SerialVisualizer:
 
         #top frame (port name and baud rate comboboxes)
         top = ttk.Frame(self.root)
-        top.pack(fill='x')
-        ttk.Label(top, text="Live Serial Data Visualizer", font=("Arial", 20)).pack(side='top')
-        ttk.Label(top, text = "Serial Port:").pack(side='left')
+        top.pack(fill='x', pady=10)
+        ttk.Label(top, text="Live Serial Data Visualizer", font=("Arial", 20)).pack(side='top', pady=10)
+        ttk.Label(top, text = "Serial Port:").pack(side='left', padx=10)
         self.port_combobox = ttk.Combobox(top, values = [port.device for port in serial.tools.list_ports.comports()])
         self.port_combobox.pack(side = 'left')
 
-        ttk.Label(top, text = "Baud Rate:").pack(side='left')
+        ttk.Label(top, text = "Baud Rate:").pack(side='left', padx=10)
         self.baudrate_combobox = ttk.Combobox(top, values= ["9600", "19200", "115200"])
-        self.baudrate_combobox.pack(side='left')
+        self.baudrate_combobox.pack(side='left', padx=10)
 
         #button frame (start and stop buttons)
         button_frame = ttk.Frame(self.root)
-        button_frame.pack()
+        button_frame.pack(pady=10)
         self.start_btn = ttk.Button(button_frame, text="Start", command= self.start)
         self.start_btn.pack(side='left')
         self.stop_btn = ttk.Button(button_frame, text="Stop", command=self.stop)
@@ -45,7 +45,7 @@ class SerialVisualizer:
         self.value_label = ttk.Label(graph_frame, text="Data: --")
         self.value_label.pack()
 
-        self.fig = Figure(figsize=(6, 5))
+        self.fig = Figure(figsize=(6, 4))
         self.ax = self.fig.add_subplot(111)
         self.ax.set_title("Live Data Graph")
         self.ax.set_xlabel("Data Number")
@@ -70,6 +70,9 @@ class SerialVisualizer:
                     #draw graph
                     self.ax.cla()
                     self.ax.plot(self.x, self.y, color = 'blue')
+                    self.ax.set_title("Live Data Graph")
+                    self.ax.set_xlabel("Data Number")
+                    self.ax.set_ylabel("Data Value")
                     self.canvas.draw()
             
                 except Exception as ex:
@@ -82,7 +85,7 @@ class SerialVisualizer:
         baud_rate = int(self.baudrate_combobox.get()) #get selected baud rate
         try:
             self.ser = serial.Serial(port, baud_rate) #initialize port
-            time.sleep(2)
+            time.sleep(0.05)
             self.is_running = True
             threading.Thread(target=self.read_port, daemon=True).start() #to listen port, we use threading
         except Exception as ex:
