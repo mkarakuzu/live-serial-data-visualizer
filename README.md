@@ -49,7 +49,7 @@ pip install pyserial matplotlib
    * Click **Start** to begin reading and visualizing data
    * Click **Stop** to safely close the connection
 
-4. The latest received value will appear above the graph in real-time.
+4. The latest received value will appear below the graph in real-time.
 
 ---
 

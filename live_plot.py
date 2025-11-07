@@ -12,7 +12,7 @@ class SerialVisualizer:
     def __init__(self, root):
         self.root = root
         self.root.title("Live Serial Data Visualizer")
-        self.root.geometry("500x500")
+        self.root.geometry("500x600")
 
         self.x = list() #x-axis list definition
         self.y = list() #y-axis list definition
@@ -42,8 +42,6 @@ class SerialVisualizer:
         #graph frame (data label and graph)
         graph_frame = ttk.Frame(self.root)
         graph_frame.pack(fill='both')
-        self.value_label = ttk.Label(graph_frame, text="Data: --")
-        self.value_label.pack()
 
         self.fig = Figure(figsize=(6, 4))
         self.ax = self.fig.add_subplot(111)
@@ -53,6 +51,9 @@ class SerialVisualizer:
 
         self.canvas = FigureCanvasTkAgg(self.fig, master=graph_frame)
         self.canvas.get_tk_widget().pack(fill='both')
+
+        self.value_label = ttk.Label(graph_frame, text="Data: --", font=("Arial", 20))
+        self.value_label.pack(pady=10)
 
     #read port function
     def read_port(self):
